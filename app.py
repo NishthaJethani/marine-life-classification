@@ -1,28 +1,33 @@
 import os
+import streamlit as st
 import gdown
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
-import streamlit as st
 import numpy as np
 from PIL import Image
 
-# URL to download the model from Google Drive
-MODEL_URL = "https://drive.google.com/file/d/1Gk6JGKlnlx8ZjrzbNFUerRZCI_ccWcrY/view?usp=sharing"  # Replace YOUR_FILE_ID with the actual file ID
-MODEL_PATH = "./model_15_88.h5"
+# Function to download the model
+def download_model(url, output):
+    if not os.path.exists(output):
+        st.write("Downloading model...")
+        gdown.download(url, output, quiet=False)
+        st.write("Model downloaded.")
 
-# Function to download the model if not already downloaded
-def download_model():
-    if not os.path.exists(MODEL_PATH):
-        with st.spinner('Downloading model...'):
-            gdown.download(MODEL_URL, MODEL_PATH, quiet=False)
-            st.success('Model downloaded successfully!')
+# Model URL and path
+model_url = 'https://drive.google.com/uc?id=18EeTVrZ6fnbSEJut9BEAZvTMUrFTZhsL'
+model_path = 'model_15_88.h5'
 
-# Load the trained model
+# Download the model if not available
+download_model(model_url, model_path)
+
+# Load the model
 def load_model_file():
-    download_model()
-    return load_model(MODEL_PATH, compile=False)
+    try:
+        return load_model(model_path, compile=False)
+    except Exception as e:
+        st.error(f"Error loading model: {e}")
+        return None
 
-# Load model
 model = load_model_file()
 
 # Labels
@@ -33,8 +38,6 @@ def classify_image(img_path):
     img = image.load_img(img_path, target_size=(224, 224))
     img_array = image.img_to_array(img)
     img_array = np.expand_dims(img_array, axis=0)
-
-    # Perform prediction
     predictions = model.predict(img_array)
     predicted_class = np.argmax(predictions, axis=1)[0]
     predicted_label = sorted_labels[predicted_class]
@@ -55,8 +58,11 @@ def main():
 
         # Classify image
         st.write("Classifying...")
-        predicted_label = classify_image(uploaded_file)
-        st.write("Prediction:", predicted_label)
+        if model is not None:
+            predicted_label = classify_image(uploaded_file)
+            st.write("Prediction:", predicted_label)
+        else:
+            st.write("Model could not be loaded.")
 
 if __name__ == "__main__":
     main()
