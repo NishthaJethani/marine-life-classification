@@ -9,11 +9,16 @@ import numpy as np
 def download_model(url, output):
     if not os.path.exists(output):
         st.write("Downloading model...")
-        gdown.download(url, output, quiet=False)
-        st.write("Model downloaded.")
+        try:
+            gdown.download(url, output, quiet=False)
+            st.write("Model downloaded.")
+        except Exception as e:
+            st.error(f"Failed to download model: {e}")
+    else:
+        st.write("Model already exists. Skipping download.")
 
 # Model URL and path
-model_url = 'https://drive.google.com/uc?id=18EeTVrZ6fnbSEJut9BEAZvTMUrFTZhsL'
+model_url = 'https://drive.google.com/uc?id=1Gk6JGKlnlx8ZjrzbNFUerRZCI_ccWcrY'
 model_path = 'model_15_88.h5'
 
 # Download the model if not available
