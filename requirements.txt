@@ -33,7 +33,7 @@ namex==0.0.8
 numpy==1.26.4
 opt-einsum==3.3.0
 optree==0.12.1
-packaging==24.1
+packaging>=16.8,<24
 pandas==2.2.2
 pillow==10.4.0
 protobuf==4.25.3
