@@ -1,4 +1,4 @@
-distutils
+setuptools
 tensorflow>=2.8.0
 gdown==4.0.2
 numpy==1.22.3
