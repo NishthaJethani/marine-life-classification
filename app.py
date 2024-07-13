@@ -4,7 +4,6 @@ import gdown
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
 import numpy as np
-from PIL import Image
 
 # Function to download the model
 def download_model(url, output):
@@ -52,8 +51,8 @@ def main():
 
     if uploaded_file is not None:
         # Display uploaded image
-        img = Image.open(uploaded_file)
-        st.image(img, caption='Uploaded Image', use_column_width=True)
+        img_bytes = uploaded_file.read()
+        st.image(img_bytes, caption='Uploaded Image', use_column_width=True)
         st.write("")
 
         # Classify image
