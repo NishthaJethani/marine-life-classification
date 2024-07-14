@@ -47,9 +47,28 @@ def classify_image(img_path):
     predicted_label = sorted_labels[predicted_class]
     return predicted_label
 
+def list_files(directory="."):
+    try:
+        files = os.listdir(directory)
+        return files
+    except Exception as e:
+        st.error(f"Error listing files: {e}")
+        return []
+
 # Streamlit app
 def main():
     st.title('Image Classification')
+    
+    directory = st.text_input("Enter directory path:", ".")
+    
+    if st.button("List files"):
+        files = list_files(directory)
+        if files:
+            st.write(f"Files in '{directory}':")
+            for file in files:
+                st.write(file)
+        else:
+            st.write("No files found or directory does not exist.")
 
     # Upload image
     uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
