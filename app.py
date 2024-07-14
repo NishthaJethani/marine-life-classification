@@ -2,6 +2,7 @@ import os
 import streamlit as st
 import gdown
 from tensorflow.keras.models import load_model
+import requests
 from tensorflow.keras.preprocessing import image
 import numpy as np
 
