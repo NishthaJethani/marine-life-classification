@@ -63,9 +63,15 @@ def classify_image(img_path):
     return predicted_label
 
 def list_files(directory="."):
+    files_info = []
     try:
         files = os.listdir(directory)
-        return files
+        for file in files:
+            file_path = os.path.join(directory, file)
+            if os.path.isfile(file_path):
+                file_size = os.path.getsize(file_path)
+                files_info.append({"file_name": file, "file_size": file_size})
+        return files_info
     except Exception as e:
         st.error(f"Error listing files: {e}")
         return []
@@ -80,8 +86,8 @@ def main():
         files = list_files(directory)
         if files:
             st.write(f"Files in '{directory}':")
-            for file in files:
-                st.write(file)
+            for file_info in files:
+                st.write(f"Name: {file_info['file_name']}, Size: {file_info['file_size']} bytes")
         else:
             st.write("No files found or directory does not exist.")
 
