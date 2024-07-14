@@ -20,7 +20,7 @@ def download_model(url, output):
 
 # Model URL and path
 # model_url = 'https://drive.google.com/uc?id=1Gk6JGKlnlx8ZjrzbNFUerRZCI_ccWcrY'
-model_url = 'https://drive.google.com/uc?id=18EeTVrZ6fnbSEJut9BEAZvTMUrFTZhsL'
+model_url = 'https://drive.google.com/uc?id=18EeTVrZ6fnbSEJut9BEAZvTMUrFTZhsL&confirm=t'
 model_path = 'model_15_88.h5'
 
 # Download the model if not available
