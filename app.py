@@ -7,24 +7,11 @@ from tensorflow.keras.preprocessing import image
 import numpy as np
 
 # Function to download the model
-# def download_model(url, output):
-#     if not os.path.exists(output):
-#         st.write("Downloading model...")
-#         try:
-#             gdown.download(url, output, quiet=False)
-#             st.write("Model downloaded.")
-#         except Exception as e:
-#             st.error(f"Failed to download model: {e}")
-#     else:
-#         st.write("Model already exists. Skipping download.")
-
 def download_model(url, output):
     if not os.path.exists(output):
         st.write("Downloading model...")
         try:
-            response = requests.get(url)
-            with open(output, 'wb') as f:
-                f.write(response.content)
+            gdown.download(url, output, quiet=False)
             st.write("Model downloaded.")
         except Exception as e:
             st.error(f"Failed to download model: {e}")
