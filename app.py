@@ -18,7 +18,8 @@ def download_model(url, output):
         st.write("Model already exists. Skipping download.")
 
 # Model URL and path
-model_url = 'https://drive.google.com/uc?id=1Gk6JGKlnlx8ZjrzbNFUerRZCI_ccWcrY'
+# model_url = 'https://drive.google.com/uc?id=1Gk6JGKlnlx8ZjrzbNFUerRZCI_ccWcrY'
+model_url = 'https://drive.google.com/file/d/18EeTVrZ6fnbSEJut9BEAZvTMUrFTZhsL/view?usp=drive_link'
 model_path = 'model_15_88.h5'
 
 # Download the model if not available
