@@ -49,34 +49,34 @@ def classify_image(img_path):
     predicted_label = sorted_labels[predicted_class]
     return predicted_label
 
-def list_files(directory="."):
-    files_info = []
-    try:
-        files = os.listdir(directory)
-        for file in files:
-            file_path = os.path.join(directory, file)
-            if os.path.isfile(file_path):
-                file_size = os.path.getsize(file_path)
-                files_info.append({"file_name": file, "file_size": file_size})
-        return files_info
-    except Exception as e:
-        st.error(f"Error listing files: {e}")
-        return []
+# def list_files(directory="."):
+#     files_info = []
+#     try:
+#         files = os.listdir(directory)
+#         for file in files:
+#             file_path = os.path.join(directory, file)
+#             if os.path.isfile(file_path):
+#                 file_size = os.path.getsize(file_path)
+#                 files_info.append({"file_name": file, "file_size": file_size})
+#         return files_info
+#     except Exception as e:
+#         st.error(f"Error listing files: {e}")
+#         return []
 
 # Streamlit app
 def main():
     st.title('Image Classification')
     
-    directory = st.text_input("Enter directory path:", ".")
+    # directory = st.text_input("Enter directory path:", ".")
     
-    if st.button("List files"):
-        files = list_files(directory)
-        if files:
-            st.write(f"Files in '{directory}':")
-            for file_info in files:
-                st.write(f"Name: {file_info['file_name']}, Size: {file_info['file_size']} bytes")
-        else:
-            st.write("No files found or directory does not exist.")
+    # if st.button("List files"):
+    #     files = list_files(directory)
+    #     if files:
+    #         st.write(f"Files in '{directory}':")
+    #         for file_info in files:
+    #             st.write(f"Name: {file_info['file_name']}, Size: {file_info['file_size']} bytes")
+    #     else:
+    #         st.write("No files found or directory does not exist.")
 
     # Upload image
     uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
