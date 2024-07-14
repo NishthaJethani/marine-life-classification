@@ -65,7 +65,7 @@ def classify_image(img_path):
 
 # Streamlit app
 def main():
-    st.title('Image Classification')
+    st.title('Marine Life Classification')
     
     # directory = st.text_input("Enter directory path:", ".")
     
